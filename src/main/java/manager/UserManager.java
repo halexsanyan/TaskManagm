@@ -112,7 +112,6 @@ public class UserManager {
     }
 
     private User getUserFromResaltset(ResultSet resultSet) {
-
         try {
             return User.builder()
                     .id(resultSet.getInt(1))
