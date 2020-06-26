@@ -1,20 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sky
-  Date: 20.06.2020
-  Time: 11:23
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>Welcome</title>
-  </head>
-  <body>
-  <form action="/login" method="post">
-    <input type="text" name="email" placeholder="Input email"required><br>
-    <input type="password" name="password" placeholder="Input password"required><br>
-    <input type="submit" value="Login">
-  </form>
-  </body>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<%
+    String msg = "";
+    if (session.getAttribute("msg") != null) {
+        msg = (String) session.getAttribute("msg");
+        session.removeAttribute("msg");
+    }
+
+%>
+<p style="color: red">
+    <%=msg%>
+</p>
+<div>
+    <form class="box" action="/login" method="post">
+        <h1>Login</h1>
+        <input type="text" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" name="" value="Login">
+    </form>
+
+</div>
+</body>
 </html>

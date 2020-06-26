@@ -31,31 +31,50 @@ public class UserRegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String type = req.getParameter("type");
-
-        User user = (User.builder()
-                .name(name)
-                .surname(surname)
-                .email(email)
-                .password(password)
-                .userType(UserType.valueOf(type))
-                .build());
-        for (Part part : req.getParts()) {
-            if (getFileName(part) != null) {
-                String fileName = System.currentTimeMillis() + getFileName(part);
-                String fullFileName = UPLOAD_DIR + File.separator + fileName;
-                part.write(fullFileName);
-                user.setPictureUrl(fileName);
-            }
+        StringBuilder msg = new StringBuilder();
+        if (name == null || name.length() == 0) {
+            msg.append("Name field is required <br>");
         }
+        if (surname == null || surname.length() == 0) {
+            msg.append("Surname field is required <br>");
+        }
+        if (email == null || email.length() == 0) {
+            msg.append("Email field is required <br>");
+        } else if (userManager.getByEmail(email) != null) {
+            msg.append("Email already exist <br>");
+        }
+        if (password == null || password.length() == 0) {
+            msg.append("Password field is required <br>");
+        }
+        if (msg.toString().equals("")) {
+            User user = (User.builder()
+                    .name(name)
+                    .surname(surname)
+                    .email(email)
+                    .password(password)
+                    .userType(UserType.valueOf(type))
+                    .build());
+            for (Part part : req.getParts()) {
+                if (getFileName(part) != null) {
+                    String fileName = System.currentTimeMillis() + getFileName(part);
+                    String fullFileName = UPLOAD_DIR + File.separator + fileName;
+                    part.write(fullFileName);
+                    user.setPictureUrl(fileName);
+                }
+            }
             userManager.addUser(user);
-            resp.sendRedirect("/managerHome");
-        }
+            msg.append("<span style=\"color:green\">User register successfully</span");
 
-        private String getFileName (Part part){
-            for (String content : part.getHeader("content-disposition").split(";")) {
-                if (content.trim().startsWith("filename"))
-                    return content.substring(content.indexOf("=") + 2, content.length() - 1);
-            }
-            return null;
         }
+        req.getSession().setAttribute("msg", msg.toString());
+        resp.sendRedirect("/managerHome");
     }
+
+    private String getFileName(Part part) {
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename"))
+                return content.substring(content.indexOf("=") + 2, content.length() - 1);
+        }
+        return null;
+    }
+}

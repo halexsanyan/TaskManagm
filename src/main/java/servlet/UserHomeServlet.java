@@ -1,6 +1,9 @@
 package servlet;
 
+import manager.CommentManager;
 import manager.TaskManager;
+import manager.UserManager;
+import model.Comment;
 import model.Task;
 import model.User;
 
@@ -16,16 +19,18 @@ import java.util.List;
 @WebServlet(urlPatterns = "/userHome")
 public class UserHomeServlet extends HttpServlet {
 
-
+    private UserManager userManager = new UserManager();
+    private TaskManager taskManager = new TaskManager();
+    private CommentManager commentManager=new CommentManager();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-            TaskManager taskManager = new TaskManager();
-            List<Task> allTasks = taskManager.getAllTasksByUserId(user.getId());
-            req.setAttribute("tasks", allTasks);
-            req.getRequestDispatcher("/WEB-INF/user.jsp").forward(req, resp);
-        }
+        List<Task> allTasks = taskManager.getAllTasksByUserId(user.getId());
+        req.setAttribute("tasks", allTasks);
+        req.getRequestDispatcher("/WEB-INF/user.jsp").forward(req, resp);
     }
+}
 

@@ -15,12 +15,12 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/managerHome")
 public class ManagerHomeServlet extends HttpServlet {
-
+    private TaskManager taskManager = new TaskManager();
+    private UserManager userManager = new UserManager();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        TaskManager taskManager = new TaskManager();
-        UserManager userManager = new UserManager();
+
         List<Task> allTasks = taskManager.getAllTasks();
         List<User> allUsers = userManager.getAllUsers();
         req.setAttribute("tasks", allTasks);
