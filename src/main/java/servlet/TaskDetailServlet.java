@@ -26,9 +26,6 @@ public class TaskDetailServlet extends HttpServlet {
         String taskId = req.getParameter("taskId");
         int id = Integer.parseInt(taskId);
 
-       // HttpSession session = req.getSession();
-       // User user = (User) session.getAttribute("user");
-        //Task task=(Task) session.getAttribute("task");
         Task taskById =taskManager.getById(id);
         List<Comment> comments=commentManager.getAllCommentsByTaskId(id);
         req.setAttribute("taskDetail",taskById);

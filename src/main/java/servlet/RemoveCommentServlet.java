@@ -1,6 +1,7 @@
 package servlet;
 
 import manager.CommentManager;
+import model.Comment;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,12 +12,15 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/removeComment")
 public class RemoveCommentServlet extends HttpServlet {
-    private CommentManager commentManager=new CommentManager();
+    private CommentManager commentManager = new CommentManager();
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        int commentId= Integer.parseInt(id);
+        int commentId = Integer.parseInt(id);
+        Comment comment = commentManager.getCommentById(commentId);
+        int taskId = comment.getTask().getId();
         commentManager.deleteCommentById(commentId);
-        resp.sendRedirect("/taskDetail");
+        resp.sendRedirect("/taskDetail?taskId=" + taskId);
     }
 }

@@ -96,6 +96,23 @@ public class CommentManager {
         }
     }
 
+    public Comment getCommentById(int commentId) {
+        String sql = " SELECT * FROM comment WHERE id  = " +commentId;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (resultSet.next()) {
+
+                return getCommentFromResaltset(resultSet);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     private Comment getCommentFromResaltset(ResultSet resultSet) {
             try {
                 return Comment.builder()

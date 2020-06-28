@@ -8,12 +8,12 @@ import javax.servlet.http.HttpSessionBindingEvent;
 public class SessionListner implements HttpSessionAttributeListener {
     @Override
     public void attributeAdded(HttpSessionBindingEvent se) {
-        System.out.println("Session attrinute was added: Key - "+se.getName());
+        System.out.println("Session attribute was added: Key - "+se.getName());
     }
 
     @Override
     public void attributeRemoved(HttpSessionBindingEvent se) {
-        System.out.println("Session attrinute was remuved: Key - "+se.getName());
+        System.out.println("Session attribute was remuved: Key - "+se.getName());
 
     }
 }

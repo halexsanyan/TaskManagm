@@ -12,9 +12,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class Comment {
-    int id;
-    String comment;
-    Task task;
-    User user;
-    Date date;
+   private int id;
+   private String comment;
+   private Task task;
+   private User user;
+   private Date date;
 }

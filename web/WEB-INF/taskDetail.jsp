@@ -7,6 +7,7 @@
 <html>
 <head>
     <title>detail</title>
+    <%--    <link rel="stylesheet" type="text/css" href="../css/style.css">--%>
 </head>
 <body>
 <%
@@ -14,24 +15,28 @@
     Task task = (Task) request.getAttribute("taskDetail");
     List<Comment> comments = (List<Comment>) request.getAttribute("taskComments");
 %>
-Name: <%=task.getName()%><br>
-Description: <%=task.getDescription()%><br>
-Deadline: <%=task.getDeadline()%><br>
-Status: <%=task.getTaskStatus()%><br>
-UserName: <%=task.getUser().getName()%> <%=task.getUser().getSurname()%><br>
+<div class="detail">
+    Name: <%=task.getName()%><br>
+    Description: <%=task.getDescription()%><br>
+    Deadline: <%=task.getDeadline()%><br>
+    Status: <%=task.getTaskStatus()%><br>
+    UserName: <%=task.getUser().getName()%> <%=task.getUser().getSurname()%><br>
+</div>
 <div>
     <form action="/addComment" method="post">
-    <input type="hidden" name="taskId" value="<%=task.getId()%>">
-    <textarea name="comment" placeholder="add comment"></textarea><br>
-    <input type="submit" value="OK"><br>
+        <input type="hidden" name="taskId" value="<%=task.getId()%>">
+        <textarea name="comment" placeholder="add comment"></textarea><br>
+        <input type="submit" value="OK"><br>
     </form>
 
-<% for (Comment comment : comments) { %>
-<p><%=comment.getComment()%></p><br>
-<%=comment.getUser().getName()%> <%=comment.getUser().getSurname()%> <%=comment.getDate()%><br>
-<% if(comment.getUser().equals(user)){%>
-<a href="/removeComment?id=<%=comment.getId()%>">Delete</a><br>
-<% } } %>
+    <% for (Comment comment : comments) { %>
+    <p><%=comment.getComment()%>
+    </p><br>
+    <%=comment.getUser().getName()%> <%=comment.getUser().getSurname()%> <%=comment.getDate()%><br>
+    <% if (comment.getUser().equals(user)) {%>
+    <a href="/removeComment?id=<%=comment.getId()%>">Delete</a><br>
+    <% }
+    } %>
 </div>
 </body>
 </html>
