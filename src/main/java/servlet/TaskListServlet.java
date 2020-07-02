@@ -1,9 +1,6 @@
 package servlet;
 
-import manager.CommentManager;
 import manager.TaskManager;
-import manager.UserManager;
-import model.Comment;
 import model.Task;
 import model.User;
 
@@ -17,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/userHome")
-public class UserHomeServlet extends HttpServlet {
+public class TaskListServlet extends HttpServlet {
 
 
     private TaskManager taskManager = new TaskManager();

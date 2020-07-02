@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>home</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+<%--    <link rel="stylesheet" type="text/css" href="../css/style.css">--%>
 </head>
 <body>
 <%
@@ -77,7 +77,7 @@
 <div>
     All Users <br>
     <table border="1">
-        <tr style="color: white">
+        <tr >
             <td>Name</td>
             <td>Surname</td>
             <td>Email</td>
@@ -86,7 +86,7 @@
         </tr>
         <%
             for (User user : users) { %>
-        <tr style="color: white">
+        <tr >
             <td><%=user.getName()%>
             </td>
             <td><%=user.getSurname()%>
@@ -107,7 +107,7 @@
 <div>
     All Tasks <br>
     <table border="1">
-        <tr style="color: white">
+        <tr >
             <td>Name</td>
             <td>Description</td>
             <td>Deadline</td>
@@ -118,7 +118,7 @@
         </tr>
         <%
             for (Task task : tasks) { %>
-        <tr style="color: white">
+        <tr >
             <td><a href="/taskDetail?taskId=<%=task.getId()%>" style="color: red"><%=task.getName()%></a>
             </td>
             <td><%=task.getDescription()%>

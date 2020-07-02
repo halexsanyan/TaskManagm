@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CommentManager {
     private Connection connection = DBConnectionProvider.getInstance().getConnection();
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private UserManager userManager = new UserManager();
     private TaskManager taskManager = new TaskManager();
 

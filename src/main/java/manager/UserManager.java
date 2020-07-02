@@ -110,6 +110,17 @@ public class UserManager {
             throwables.printStackTrace();
         }
     }
+    public void update(int id, String picture) {
+        String sql = "UPDATE user SET picture_url = '" + picture + "' WHERE id = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     private User getUserFromResaltset(ResultSet resultSet) {
         try {

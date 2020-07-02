@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Home</title>
-    <link rel="stylesheet"  href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 
@@ -14,11 +14,25 @@
     List<Task> tasks = (List<Task>) request.getAttribute("tasks");
     User user = (User) session.getAttribute("user");
 %>
-Welcome <%=user.getName()%> <% if (user.getPictureUrl() != null) {%>
-<img src="/image?path=<%=user.getPictureUrl()%>" width="50"/> <%}%> <a href="/logout" style="color: white">Logout</a><br>
+<div class="welcome">
+    <%=user.getName()%> <%=user.getSurname()%>
+</div>
+<div class="picture"> <% if (user.getPictureUrl() != null) {%>
+    <img src="/image?path=<%=user.getPictureUrl()%>"style="width: 300px;"/> <%}%>
+</div>
+<div>
+    <form class="userimg" action="/updateImg" method="post" enctype="multipart/form-data">
+        <input type="file" name="image"> <br>
+        <input type="submit" value="Add or update img"><br>
+    </form>
+</div>
+<div class="logout" id="log1">
+    <a href="/logout" style="color: white">Logout</a><br>
+</div>
+
 
 <div class="main">
-    All Tasks <br>
+    <h2 style="color: gainsboro">All Tasks </h2><br>
     <table border="1"  >
         <tr style="color: white">
             <td>Name</td>
