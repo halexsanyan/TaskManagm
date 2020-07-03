@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/userHome")
+@WebServlet(urlPatterns = "/taskList")
 public class TaskListServlet extends HttpServlet {
 
 
@@ -21,13 +21,13 @@ public class TaskListServlet extends HttpServlet {
 
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         List<Task> allTasks = taskManager.getAllTasksByUserId(user.getId());
         req.setAttribute("tasks", allTasks);
-        req.getRequestDispatcher("/WEB-INF/user.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/taskList.jsp").forward(req, resp);
     }
 }
 

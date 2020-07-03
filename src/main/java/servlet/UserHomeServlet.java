@@ -26,10 +26,10 @@ public class UserHomeServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
-        List<Task> allTasks = taskManager.getAllTasksByUserId(user.getId());
-        req.setAttribute("tasks", allTasks);
+//        HttpSession session = req.getSession();
+//        User user = (User) session.getAttribute("user");
+//        List<Task> allTasks = taskManager.getAllTasksByUserId(user.getId());
+//        req.setAttribute("tasks", allTasks);
         req.getRequestDispatcher("/WEB-INF/user.jsp").forward(req, resp);
     }
 }

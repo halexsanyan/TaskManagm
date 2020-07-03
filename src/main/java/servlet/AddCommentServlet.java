@@ -5,7 +5,6 @@ import manager.TaskManager;
 import manager.UserManager;
 import model.Comment;
 import model.Task;
-import model.TaskStatus;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -15,13 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @WebServlet(urlPatterns = "/addComment")
 public class AddCommentServlet extends HttpServlet {
 
-    private UserManager userManager = new UserManager();
+   // private UserManager userManager = new UserManager();
     private TaskManager taskManager = new TaskManager();
     private CommentManager commentManager = new CommentManager();
 
