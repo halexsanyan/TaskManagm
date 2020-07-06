@@ -35,6 +35,7 @@
 </div>
 <br>
   <div class=newDiv><div/>
+<p>new P tag</p>
 <!-- The dots/circles -->
 <div style="text-align:center">
     <span class="dot" onclick="currentSlide(1)"></span>
