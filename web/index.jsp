@@ -34,7 +34,7 @@
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
 <br>
-
+  <div class=newDiv><div/>
 <!-- The dots/circles -->
 <div style="text-align:center">
     <span class="dot" onclick="currentSlide(1)"></span>
